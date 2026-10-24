@@ -1,22 +1,308 @@
 <!doctype html>
 <html lang="fr-CA">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#101a1a"><meta name="description" content="VITALFLEX Training — suivi d'entraînement et progression">
-<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0d">
+<meta name="description" content="VITALFLEX Training — suivi d'entraînement, progression et pesées.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
 <title>VITALFLEX Training</title>
 <style>
-:root{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color-scheme:dark;--bg:#0a1213;--surface:#132023;--surface2:#1c3032;--edge:#304a49;--txt:#f1f7f4;--muted:#a9beb9;--lime:#a3f2c0;--accent:#63dfa2;--warn:#ffce88}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#193d35 0%,var(--bg) 42%);color:var(--txt);min-height:100vh}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.app{max-width:980px;margin:auto;padding:22px 16px 96px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px}.logo{font-weight:900;letter-spacing:.1em;color:var(--lime);font-size:14px}.subtitle{color:var(--muted);font-size:12px}.pill{border:1px solid var(--edge);border-radius:999px;padding:7px 10px;color:var(--muted);font-size:12px}h1{font-size:clamp(25px,5vw,37px);margin:10px 0 6px;letter-spacing:-.04em}h2{font-size:21px;letter-spacing:-.025em;margin:0 0 12px}h3{margin:0 0 8px;font-size:16px}.lead{color:var(--muted);margin:0 0 22px;line-height:1.5}.nav{display:flex;gap:7px;overflow-x:auto;padding:14px 0 22px;scrollbar-width:none}.nav button,.days button{border:1px solid var(--edge);background:var(--surface);color:var(--muted);border-radius:13px;padding:11px 15px;white-space:nowrap}.nav button.active,.days button.active{background:var(--accent);color:#092019;border-color:var(--accent);font-weight:800}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{border:1px solid var(--edge);background:rgba(19,32,35,.96);border-radius:20px;padding:18px;margin-bottom:13px}.stat strong{display:block;font-size:29px;color:var(--lime)}.stat span,.muted{color:var(--muted)}.stat span{font-size:12px}section[hidden]{display:none!important}.btn{border:0;border-radius:12px;padding:12px 16px;background:var(--accent);color:#062016;font-weight:800}.btn.secondary{border:1px solid var(--edge);background:var(--surface2);color:var(--txt)}.btn.danger{background:#633b3b;color:#fff}.btn.small{padding:8px 11px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.wrap{flex-wrap:wrap}.days{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 15px}.exercise{border-top:1px solid var(--edge);padding:17px 0}.exercise:first-child{border:0}.exhead{display:flex;justify-content:space-between;gap:12px;align-items:start}.exhead h3{margin:0}.exhead small{display:block;color:var(--muted);margin-top:4px}.sets{display:grid;grid-template-columns:40px minmax(0,1fr) minmax(0,1fr) 35px;gap:8px;align-items:center;margin-top:9px}.sets label{font-size:11px;color:var(--muted)}.sets input{width:100%;min-width:0}.input,input,select,textarea{color:var(--txt);background:#0b181a;border:1px solid #3d5655;padding:10px;border-radius:10px}input:focus,select:focus{outline:2px solid var(--accent)}input[type=number]{font-variant-numeric:tabular-nums}input[type=date]{color-scheme:dark}.sethead{margin-top:13px}.note{border-left:3px solid var(--warn);padding:12px;background:#362e25;border-radius:8px;color:#f5dbc0;line-height:1.5;font-size:13px}.ok{color:var(--lime)}.tiny{font-size:12px;line-height:1.6}.progress{height:9px;background:#304644;border-radius:20px;overflow:hidden}.progress>div{height:100%;background:var(--accent);transition:width .2s}.historyItem{border-top:1px solid var(--edge);padding:14px 0}.historyItem:first-of-type{border-top:0}.tag{display:inline-block;padding:4px 8px;background:#203c35;border-radius:7px;font-size:11px;color:var(--lime)}.tabs{display:flex;gap:8px;flex-wrap:wrap}table{width:100%;border-collapse:collapse;font-size:13px}td,th{border-bottom:1px solid var(--edge);padding:11px 6px;text-align:left}th{color:var(--muted)}.hint{color:var(--muted);font-size:12px;line-height:1.55}.footer{margin-top:22px;color:#809a92;font-size:11px;line-height:1.6}.hidden{display:none!important}@media(max-width:600px){.grid{gap:8px}.card{padding:14px;border-radius:16px}.stat strong{font-size:24px}.app{padding:16px 12px 90px}.sets{grid-template-columns:26px minmax(0,1fr) minmax(0,1fr) 32px;gap:6px}.nav button{padding:11px 12px}.top .pill{display:none}}
-.exidentity{display:flex;gap:12px;align-items:center;min-width:0}.exidentity>div{min-width:0}.exart{width:108px;height:85px;flex-shrink:0}.setlabels{display:grid;grid-template-columns:34px minmax(0,1fr) minmax(0,1.4fr);gap:8px;margin:14px 0 3px;color:var(--muted);font-size:11px}.setentry{display:grid;grid-template-columns:34px minmax(0,1fr) minmax(0,1.4fr) minmax(0,118px);gap:8px;align-items:center;margin:8px 0;border-radius:12px;padding:6px 0}.setentry.completed{background:rgba(99,223,162,.09)}.setentry>input,.resbox select,.resbox input{width:100%;min-width:0}.resbox{display:flex;flex-direction:column;gap:5px;min-width:0}.setentry .completeSet{white-space:normal;min-height:46px}.rest-config{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--surface2);padding:12px;border-radius:12px;margin-top:16px}.rest-config small{flex-basis:100%}.rest-panel{position:sticky;top:8px;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--accent);border-radius:14px;padding:12px 16px;margin:12px 0;background:#193c32}.rest-panel[hidden]{display:none}.rest-panel strong{display:block;font-size:35px;font-variant-numeric:tabular-nums;color:var(--lime)}@media(max-width:600px){.setentry{grid-template-columns:24px minmax(0,1fr) minmax(0,1.35fr);}.setentry .completeSet{grid-column:2 / -1}.setlabels{grid-template-columns:24px minmax(0,1fr) minmax(0,1.35fr)}.exart{width:75px;height:65px}.exhead{flex-wrap:wrap}}
+:root{
+  --bg:#090909;
+  --bg2:#111214;
+  --surface:#141518;
+  --surface2:#1b1d21;
+  --surface3:#22252b;
+  --line:#2d3138;
+  --line2:#3b4048;
+  --text:#f6f6f7;
+  --muted:#b6b8bf;
+  --soft:#90949d;
+  --gold:#c8a45a;
+  --gold2:#f0d196;
+  --goldDark:#7d6331;
+  --success:#2fba73;
+  --successSoft:rgba(47,186,115,.14);
+  --danger:#8a4040;
+  --radius:22px;
+  --shadow:0 18px 50px rgba(0,0,0,.35);
+  color-scheme:dark;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:linear-gradient(180deg,#0d0d0f 0%,#080809 100%);color:var(--text);min-height:100%}
+body{min-height:100vh}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+a{color:inherit}
+.app{max-width:1120px;margin:0 auto;padding:18px 14px 96px}
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:16px}
+.brand{display:flex;flex-direction:column;gap:6px}
+.logo{font-size:14px;font-weight:900;letter-spacing:.18em;color:var(--gold2)}
+.logo span{color:#fff}
+.tagline{font-size:11px;letter-spacing:.12em;color:var(--muted)}
+.version{padding:9px 12px;border-radius:999px;background:rgba(200,164,90,.08);border:1px solid rgba(200,164,90,.26);color:var(--gold2);font-size:12px;white-space:nowrap}
+.nav{display:flex;gap:8px;overflow-x:auto;padding:2px 0 16px;scrollbar-width:none}
+.nav button{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:14px;padding:11px 14px;white-space:nowrap;min-height:44px}
+.nav button.active{background:linear-gradient(180deg,#1f1a12,#16120d);border-color:rgba(200,164,90,.5);color:#fff;box-shadow:inset 0 0 0 1px rgba(240,209,150,.1)}
+section[hidden]{display:none !important}
+.hero{padding:22px;background:radial-gradient(circle at top right,rgba(200,164,90,.12),transparent 35%),linear-gradient(180deg,#151618 0%,#101113 100%);border:1px solid rgba(200,164,90,.18);border-radius:var(--radius);box-shadow:var(--shadow)}
+h1{margin:0 0 8px;font-size:clamp(28px,4vw,42px);line-height:1.02;letter-spacing:-.045em}
+h2{margin:0 0 10px;font-size:22px;letter-spacing:-.03em}
+h3{margin:0;font-size:18px;letter-spacing:-.02em}
+p{margin:0}
+.lead{color:var(--muted);line-height:1.55;max-width:720px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.card{background:linear-gradient(180deg,#141518 0%,#111214 100%);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.stat strong{display:block;font-size:30px;color:var(--gold2);letter-spacing:-.04em}
+.stat span,.hint,.muted{color:var(--muted)}
+.hint{font-size:12px;line-height:1.55}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.wrap{flex-wrap:wrap}
+.btn{border:0;background:linear-gradient(180deg,var(--gold2),var(--gold));color:#19150c;border-radius:14px;padding:12px 16px;font-weight:800;min-height:44px;box-shadow:0 10px 25px rgba(200,164,90,.22)}
+.btn.secondary{background:var(--surface2);color:#fff;border:1px solid var(--line)}
+.btn.ghost{background:transparent;color:var(--gold2);border:1px solid rgba(200,164,90,.3);box-shadow:none}
+.btn.danger{background:#3a2222;color:#fff;border:1px solid #6d4343;box-shadow:none}
+.btn.small{padding:9px 12px;min-height:38px;font-size:12px;border-radius:12px}
+.days{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 14px}
+.days button{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:14px;padding:11px 14px;min-height:44px}
+.days button.active{background:linear-gradient(180deg,#1f1a12,#16120d);border-color:rgba(200,164,90,.48);color:#fff}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(200,164,90,.08);border:1px solid rgba(200,164,90,.2);font-size:12px;color:var(--gold2)}
+.trainingShell{display:grid;grid-template-columns:minmax(0,1.1fr) 330px;gap:12px;align-items:start}
+.exerciseCard{padding:18px}
+.exerciseTop{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.exerciseIdentity{display:flex;gap:14px;align-items:flex-start;min-width:0}
+.exerciseText{min-width:0}
+.eyebrow{font-size:11px;letter-spacing:.12em;color:var(--gold2);text-transform:uppercase;margin-bottom:6px}
+.exerciseMeta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.kv{display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:12px;color:var(--muted)}
+.exart{width:102px;height:82px;flex:0 0 auto}
+.prevBox,.statusBox,.restBox,.notesBox{padding:16px}
+.prevBox strong,.statusBox strong,.restBox strong{display:block;margin-bottom:6px}
+.summaryChips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.summaryChip{padding:8px 10px;border-radius:12px;background:var(--surface2);border:1px solid var(--line);font-size:12px;color:var(--muted)}
+.summaryChip.done{background:var(--successSoft);border-color:rgba(47,186,115,.35);color:#d7f9e8}
+.progress{height:10px;border-radius:999px;background:#24272d;overflow:hidden;margin-top:10px;border:1px solid #2d3138}
+.progress > div{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0;transition:width .2s}
+.setList{margin-top:16px;display:grid;gap:10px}
+.setRow{display:grid;grid-template-columns:52px minmax(0,1fr) minmax(0,1.25fr) 118px;gap:8px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.015)}
+.setRow.completed{background:var(--successSoft);border-color:rgba(47,186,115,.34)}
+.setNo{display:flex;align-items:center;justify-content:center;height:42px;border-radius:12px;background:var(--surface2);border:1px solid var(--line);font-weight:800;color:var(--gold2)}
+.input,input,select,textarea{width:100%;background:#0f1012;color:#fff;border:1px solid var(--line2);border-radius:12px;padding:11px 12px}
+input:focus,select:focus,textarea:focus{outline:2px solid rgba(200,164,90,.45);border-color:rgba(200,164,90,.5)}
+.compound{display:flex;flex-direction:column;gap:6px}
+.completeSet{min-height:42px}
+.restConfig{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.restPanel{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-radius:18px;background:linear-gradient(180deg,#1b1812,#13110d);border:1px solid rgba(200,164,90,.26)}
+.restPanel[hidden]{display:none}
+.restTimer{font-size:36px;font-weight:900;letter-spacing:-.05em;color:var(--gold2)}
+.sideCol{display:grid;gap:12px}
+.sideList{display:grid;gap:8px}
+.miniExercise{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--surface2)}
+.miniExercise.active{border-color:rgba(200,164,90,.45);box-shadow:inset 0 0 0 1px rgba(240,209,150,.08)}
+.miniMeta{font-size:12px;color:var(--soft)}
+.tiny{font-size:12px}
+textarea{min-height:100px;resize:vertical}
+.note{padding:14px 16px;border-radius:16px;border:1px solid rgba(200,164,90,.2);background:rgba(200,164,90,.07);color:#f0dbc0;line-height:1.55;font-size:13px}
+.historyItem{border-top:1px solid var(--line);padding:14px 0}
+.historyItem:first-child{border-top:0;padding-top:0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--muted);font-weight:600}
+.footer{margin-top:18px;color:#8b8f98;font-size:11px;line-height:1.55}
+.empty{padding:16px;border-radius:16px;background:var(--surface2);border:1px dashed var(--line);color:var(--muted)}
+.quickLinks{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+@media (max-width:920px){
+  .trainingShell{grid-template-columns:1fr}
+  .sideCol{order:2}
+}
+@media (max-width:720px){
+  .grid{grid-template-columns:1fr}
+  .exerciseTop{flex-direction:column}
+  .exerciseIdentity{align-items:flex-start}
+}
+@media (max-width:560px){
+  .app{padding:14px 12px 84px}
+  .card,.hero,.exerciseCard,.prevBox,.statusBox,.restBox,.notesBox{padding:15px}
+  .topbar{align-items:flex-start}
+  .version{display:none}
+  .setRow{grid-template-columns:44px 1fr;grid-template-areas:'num reps' 'num resistance' 'btn btn';align-items:start}
+  .setRow .setNo{grid-area:num;height:100%}
+  .setRow .repsBox{grid-area:reps}
+  .setRow .resBox{grid-area:resistance}
+  .setRow .completeSet{grid-area:btn;width:100%}
+  .exart{width:80px;height:66px}
+  .restTimer{font-size:32px}
+}
 </style>
 </head>
-<body><div class="app">
-<div class="top"><div><div class="logo">◆ VITALFLEX <span style="color:white">TRAINING</span></div><div class="subtitle">BUILD YOUR PROGRESS ANYWHERE</div></div><div class="pill">Version personnelle · v1.1</div></div>
-<nav class="nav" aria-label="Navigation"><button class="active" data-tab="dashboard">Accueil</button><button data-tab="training">Entraînement</button><button data-tab="history">Historique</button><button data-tab="body">Pesées</button><button data-tab="settings">Données</button></nav>
-<section id="dashboard"><h1>Ton progrès commence ici.</h1><p class="lead">Force fonctionnelle, mobilité et masse musculaire — quatre journées adaptées à ta progression.</p><div class="grid"><div class="card stat"><strong id="totalSessions">0</strong><span>Séances terminées</span></div><div class="card stat"><strong id="thisWeek">0/4</strong><span>Cette semaine</span></div><div class="card stat"><strong id="latestWeight">—</strong><span>Dernière pesée (lb)</span></div></div><div class="card"><h2>Ton programme</h2><div id="weekOverview"></div><button class="btn" id="startButton">Ouvrir mon entraînement →</button></div><div class="card"><h2>Ton prochain objectif</h2><p class="muted tiny">Note chaque série, puis termine ta séance pour obtenir une comparaison avec la précédente du même jour. Commence prudemment et privilégie toujours un mouvement confortable pour tes épaules.</p></div></section>
-<section id="training" hidden><h1>Mon entraînement</h1><p class="lead">Choisis ta journée, sélectionne la résistance et confirme chaque série pour démarrer le repos.</p><div class="days" id="dayTabs"></div><div class="card"><div class="row wrap"><div><h2 id="dayTitle"></h2><div class="muted tiny" id="dayFocus"></div></div><span class="tag" id="dayTag"></span></div><div class="rest-config"><label for="restDuration">⏱️ Temps de repos</label><select id="restDuration"><option value="30">30 secondes</option><option value="45">45 secondes</option><option value="60">1 minute</option><option value="90" selected>1 min 30</option><option value="120">2 minutes</option><option value="180">3 minutes</option></select><small class="muted">Après chaque série confirmée : sonnerie et vibration si le téléphone les autorise.</small></div><div id="restPanel" class="rest-panel" hidden role="status" aria-live="polite"><div><b id="restMessage">Récupération en cours</b><strong id="restTimer">1:30</strong></div><button type="button" class="btn secondary small" id="restSkip">Arrêter le repos</button></div><div id="exerciseList"></div><label for="sessionNotes">Notes sur la séance</label><textarea id="sessionNotes" rows="3" style="width:100%;margin:8px 0" placeholder="Énergie, douleurs, mobilité, ressenti…"></textarea><div class="row wrap"><button class="btn secondary" id="clearDraft">Réinitialiser cette séance</button><button class="btn" id="saveSession">Terminer et enregistrer</button></div></div><div class="note">Épaules : échauffement doux avant le haut du corps. Ne force pas à travers une douleur. Évite pour l'instant les dips profonds, muscle-ups et mouvements explosifs. Fais valider les exercices si tes restrictions sont toujours présentes.</div></section>
-<section id="history" hidden><h1>Historique et comparaisons</h1><p class="lead">Tes séances sont comparées avec la dernière séance enregistrée du même jour.</p><div class="card" id="historyList"></div></section>
-<section id="body" hidden><h1>Suivi corporel</h1><p class="lead">Enregistre ta pesée hebdomadaire et consulte son évolution.</p><div class="card"><form id="weightForm"><div class="row wrap"><label>Date <input type="date" id="weightDate" required></label><label>Poids (lb) <input type="number" min="40" max="1000" step="0.1" id="weightValue" required placeholder="ex. 190.5"></label><button class="btn" type="submit">Ajouter</button></div></form></div><div class="card"><h2>Mes pesées</h2><div id="weightHistory"></div></div></section>
-<section id="settings" hidden><h1>Mes données</h1><p class="lead">Prototype personnel : données enregistrées localement sur cet appareil et dans ce navigateur.</p><div class="card"><h2>Sauvegarde et transfert</h2><p class="muted tiny">Exporte une copie JSON de tes séances et pesées. Tu peux ensuite réimporter cette sauvegarde sur le même appareil ou sur un autre. Conserve-la dans un endroit privé : elle contient tes informations de santé et d'entraînement.</p><div class="row wrap"><button class="btn" id="exportData">Exporter mes données</button><label class="btn secondary" style="cursor:pointer">Importer une sauvegarde <input type="file" accept="application/json,.json" id="importData" class="hidden"></label></div><p class="hint" id="storageStatus"></p></div><div class="card"><h2>Limites de la version 1</h2><p class="muted tiny">Pas encore de compte utilisateur, de synchronisation entre appareils, de base de données hébergée ni de partage avec les clients. Évite la navigation privée et exporte une sauvegarde régulièrement, car effacer les données du navigateur peut effacer le journal.</p><button class="btn danger small" id="wipeData">Effacer les données locales</button></div></section>
-<footer class="footer">VITALFLEX Training · Application de suivi sportif, non destinée au diagnostic ni au traitement. La progression et la tolérance à l'effort varient selon les personnes.</footer>
-</div><script src="app.js" defer></script></body></html>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">◆ VITALFLEX <span>TRAINING</span></div>
+      <div class="tagline">BUILD YOUR PROGRESS ANYWHERE</div>
+    </div>
+    <div class="version">Version personnelle · v1.2</div>
+  </div>
+
+  <nav class="nav" aria-label="Navigation principale">
+    <button class="active" data-tab="dashboard">Accueil</button>
+    <button data-tab="training">Entraînement</button>
+    <button data-tab="history">Historique</button>
+    <button data-tab="body">Pesées</button>
+    <button data-tab="settings">Données</button>
+  </nav>
+
+  <section id="dashboard">
+    <div class="hero">
+      <h1>Plus sharp. Plus simple. Plus VITALFLEX.</h1>
+      <p class="lead">Un suivi personnel orienté force fonctionnelle, mobilité et développement musculaire, avec un style plus premium noir, blanc et or.</p>
+      <div class="quickLinks">
+        <button class="btn" id="startButton">Ouvrir mon entraînement</button>
+        <button class="btn secondary" id="openHistoryButton">Voir mon historique</button>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card stat"><strong id="totalSessions">0</strong><span>Séances enregistrées</span></div>
+      <div class="card stat"><strong id="thisWeek">0/4</strong><span>Cette semaine</span></div>
+      <div class="card stat"><strong id="latestWeight">—</strong><span>Dernière pesée (lb)</span></div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <div class="row wrap">
+        <div>
+          <h2>Aperçu de tes journées</h2>
+          <p class="hint">Ouvre directement la séance du jour.</p>
+        </div>
+        <span class="tag">4 jours</span>
+      </div>
+      <div id="weekOverview"></div>
+    </div>
+  </section>
+
+  <section id="training" hidden>
+    <div class="row wrap" style="margin-bottom:8px">
+      <div>
+        <h1 style="font-size:32px;margin-bottom:6px">Mon entraînement</h1>
+        <p class="lead">Navigation plus compacte, suivi par exercice, validation de série, repos automatique et comparaison avec la séance précédente.</p>
+      </div>
+    </div>
+
+    <div class="days" id="dayTabs"></div>
+
+    <div class="trainingShell">
+      <div class="mainCol">
+        <div class="card restBox">
+          <div class="row wrap">
+            <div>
+              <h2 id="dayTitle"></h2>
+              <p class="hint" id="dayFocus"></p>
+            </div>
+            <span class="tag" id="dayTag"></span>
+          </div>
+          <div class="restConfig" style="margin-top:12px">
+            <label for="restDuration" class="tiny">⏱️ Temps de repos</label>
+            <select id="restDuration" style="max-width:180px">
+              <option value="30">30 s</option>
+              <option value="45">45 s</option>
+              <option value="60">60 s</option>
+              <option value="90" selected>90 s</option>
+              <option value="120">120 s</option>
+              <option value="180">180 s</option>
+            </select>
+            <span class="hint">Après confirmation d’une série, le compte à rebours démarre automatiquement.</span>
+          </div>
+          <div id="restPanel" class="restPanel" hidden style="margin-top:14px" role="status" aria-live="polite">
+            <div>
+              <strong id="restMessage">Récupération en cours</strong>
+              <div class="restTimer" id="restTimer">1:30</div>
+            </div>
+            <button type="button" class="btn secondary small" id="restSkip">Arrêter le repos</button>
+          </div>
+        </div>
+
+        <div class="card prevBox" id="dayPreviousSummary"></div>
+
+        <div class="card exerciseCard" id="exerciseCard"></div>
+
+        <div class="card notesBox" style="margin-top:12px">
+          <div class="row wrap" style="margin-bottom:10px">
+            <h2>Notes de séance</h2>
+            <span class="tag">Optionnel</span>
+          </div>
+          <textarea id="sessionNotes" placeholder="Énergie, épaules, mobilité, ressenti, charge perçue…"></textarea>
+          <div class="row wrap" style="margin-top:12px">
+            <button class="btn secondary" id="clearDraft">Réinitialiser la séance</button>
+            <button class="btn" id="saveSession">Terminer et enregistrer</button>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:12px">Épaules : échauffement doux avant le haut du corps. Évite pour l’instant les dips profonds, les mouvements explosifs et tout exercice qui provoque une douleur nette.</div>
+      </div>
+
+      <div class="sideCol">
+        <div class="card statusBox">
+          <strong>Progression de la journée</strong>
+          <div class="hint" id="sessionProgressText">0 série sur 0</div>
+          <div class="progress"><div id="sessionProgressBar"></div></div>
+          <div class="summaryChips" id="sessionQuickStats"></div>
+        </div>
+
+        <div class="card statusBox">
+          <div class="row wrap">
+            <strong style="margin:0">Exercices</strong>
+            <span class="tag" id="exerciseCounter">1 / 6</span>
+          </div>
+          <div class="sideList" id="exerciseMiniList" style="margin-top:12px"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="history" hidden>
+    <div class="card">
+      <h1 style="font-size:32px;margin-bottom:8px">Historique et comparaisons</h1>
+      <p class="lead" style="margin-bottom:16px">Chaque séance est comparée avec la dernière séance du même jour, et chaque exercice peut être consulté en détail.</p>
+      <div id="historyList"></div>
+    </div>
+  </section>
+
+  <section id="body" hidden>
+    <div class="card">
+      <h1 style="font-size:32px;margin-bottom:8px">Suivi corporel</h1>
+      <p class="lead" style="margin-bottom:16px">Enregistre tes pesées du dimanche et visualise leur évolution.</p>
+      <form id="weightForm" class="row wrap" style="align-items:flex-end;margin-bottom:14px">
+        <label style="min-width:180px">Date
+          <input type="date" id="weightDate" required>
+        </label>
+        <label style="min-width:180px">Poids (lb)
+          <input type="number" min="40" max="1000" step="0.1" id="weightValue" required placeholder="ex. 190.5">
+        </label>
+        <button class="btn" type="submit">Ajouter la pesée</button>
+      </form>
+      <div id="weightHistory"></div>
+    </div>
+  </section>
+
+  <section id="settings" hidden>
+    <div class="card">
+      <h1 style="font-size:32px;margin-bottom:8px">Sauvegarde des données</h1>
+      <p class="lead" style="margin-bottom:16px">Exporte une sauvegarde, importe-la sur un autre appareil ou réinitialise tes données locales.</p>
+      <p class="hint" id="storageStatus"></p>
+      <div class="row wrap" style="margin-top:16px">
+        <button class="btn secondary" id="exportData">Exporter mes données</button>
+        <label class="btn ghost" style="display:inline-flex;align-items:center;justify-content:center">Importer une sauvegarde
+          <input type="file" id="importData" accept="application/json" hidden>
+        </label>
+        <button class="btn danger" id="wipeData">Effacer toutes les données</button>
+      </div>
+      <div class="footer">Les données sont conservées localement sur l’appareil. Une mise à jour de l’application devrait les garder, mais exporte une sauvegarde avant chaque changement important.</div>
+    </div>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
