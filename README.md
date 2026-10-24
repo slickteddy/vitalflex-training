@@ -28,3 +28,12 @@ Pour un test local : `python3 -m http.server 8080`, puis ouvrir `http://localhos
 - Gestion des profils clients et contrôle d'accès
 
 Cette application n'est pas un outil médical : les exercices du haut du corps doivent être adaptés en fonction des restrictions individuelles des épaules.
+
+
+## Nouveautés v1.1
+- Type de résistance par série : bande, kg, lb, poids du corps, assistance et autre.
+- Confirmation de chaque série, minuterie configurable (30 à 180 secondes), signal sonore et vibration si disponible.
+- Illustrations SVG intégrées **schématiques**, non des instructions biomécaniques.
+- Conservation des sauvegardes précédentes grâce à la même clé locale.
+- Mise à jour : sur GitHub, remplacer les six fichiers dans la racine du dépôt puis effectuer un commit. Ne pas effacer les données du navigateur.
+- Limitations : le son/vibreur et le minuteur ne sont pas garantis si l’application est mise en arrière-plan ou si l’écran est verrouillé.
