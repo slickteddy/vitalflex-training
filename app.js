@@ -76,7 +76,7 @@ let audioContext = null;
 function ensureDraft(dayIndex){
   const exs = DAYS[dayIndex].ex;
   const draft = state.drafts[dayIndex];
-  if (!draft || !Array.isArray(draft.sets) || draft.sets.length !== exs.length) {
+  if (!draft || !Array.isArray(draft.sets) || draft.sets.length !== exs.length || draft.sets.some((sets, i) => !Array.isArray(sets) || sets.length !== exs[i][2])) {
     return {notes:'',cursor:0,sets:exs.map(ex => Array.from({length:ex[2]}, () => ({reps:'', unit:'Bande', value:'Légère', resistance:'Bande: Légère', done:false}))) };
   }
   if (!Number.isInteger(draft.cursor) || draft.cursor < 0 || draft.cursor >= exs.length) draft.cursor = 0;
@@ -122,7 +122,7 @@ function readSet(ei, si){
   const unit = unitEl?.value || old.unit || 'Bande';
   const value = valueEl ? valueEl.value : (old.value ?? '');
   return {
-    reps: repsEl?.value ?? '',
+    reps: repsEl?.value ?? old.reps ?? '',
     unit,
     value,
     resistance: formatResistance(unit, value),
@@ -261,9 +261,15 @@ function renderTraining(){
   $('#dayTag').textContent = `${day.ex.length} exercices`;
   $('#restDuration').value = String(restSeconds);
   $('#sessionNotes').value = draft.notes || '';
-  renderDayPreviousSummary();
-  renderExerciseCard();
-  renderRightColumn();
+  try {
+    renderDayPreviousSummary();
+    renderExerciseCard();
+    renderRightColumn();
+  } catch(error) {
+    console.error('VITALFLEX: problème de chargement de séance', error);
+    $('#exerciseCard').innerHTML = '<h2>Impossible d’afficher les exercices</h2><p class="hint">Un ancien brouillon empêche peut-être le chargement. Exporte tes données avant toute réinitialisation.</p><button type="button" class="btn secondary" id="retryTraining">Réessayer</button>';
+    $('#retryTraining').onclick=()=>renderTraining();
+  }
 }
 
 function renderDayPreviousSummary(){
@@ -629,7 +635,7 @@ $('#clearDraft').onclick = () => {
 $('#saveSession').onclick = () => {
   saveDraft();
   const draft = getDraft();
-  const populated = draft.sets.flat().some(s => s.reps !== '' || s.done || (s.value && s.value !== ''));
+  const populated = draft.sets.flat().some(s => s.reps !== '' || s.done);
   if (!populated) {
     alert('Renseigne au moins une série avant d’enregistrer la séance.');
     return;
